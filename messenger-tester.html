@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-5">
+    <div class="max-w-2xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+        <div class="p-4 bg-gray-800 text-white flex flex-col gap-2">
+            <div class="flex gap-2">
+                <input id="myId" type="text" placeholder="Your User ID (Sender)" class="p-2 text-black w-full rounded">
+                <input id="toId" type="text" placeholder="Receiver User ID" class="p-2 text-black w-full rounded">
+            </div>
+            <div class="flex gap-2">
+                <input id="convId" type="text" placeholder="Conversation ID" class="p-2 text-black w-full rounded">
+                <button onclick="connectSocket()" class="bg-green-500 px-4 py-2 rounded whitespace-nowrap">Connect Socket</button>
+            </div>
+        </div>
+
+        <div id="messages" class="h-96 overflow-y-auto p-4 space-y-4 border-b"></div>
+
+        <div class="p-4 flex flex-col gap-2">
+            <div class="flex gap-2">
+                <input type="file" id="fileInput" multiple class="text-sm">
+                <input id="msgInput" type="text" placeholder="Type message..." class="flex-1 border p-2 rounded">
+                <button onclick="handleSend()" class="bg-blue-600 text-white px-6 py-2 rounded">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let socket;
+
+        function connectSocket() {
+            const senderId = document.getElementById('myId').value;
+            if (!senderId) return alert("Enter your ID first!");
+
+            // সকেট কানেক্ট করা হচ্ছে
+            socket = io('http://localhost:5000', { query: { userId: senderId } });
+
+            socket.on('newMessage', (msg) => {
+                displayMessage(msg, 'left');
+            });
+
+            socket.on('messageSent', (msg) => {
+                displayMessage(msg, 'right');
+                // যদি প্রথম মেসেজের পর সার্ভার থেকে নতুন conversationId আসে তবে সেট করা
+                if(msg.conversationId) document.getElementById('convId').value = msg.conversationId;
+            });
+
+            socket.on('error', (err) => {
+                alert("Error: " + err.message);
+            });
+
+            alert("Connected as: " + senderId);
+        }
+
+        async function handleSend() {
+            const senderId = document.getElementById('myId').value;
+            const receiverId = document.getElementById('toId').value;
+            const conversationId = document.getElementById('convId').value; // আইডি নেওয়া হচ্ছে
+            const content = document.getElementById('msgInput').value;
+            const fileFiles = document.getElementById('fileInput').files;
+
+            if (!conversationId) {
+                return alert("Conversation ID is required for optimal sending!");
+            }
+
+            let uploadedFiles = [];
+
+            // ১. ফাইল আপলোড লজিক
+            if (fileFiles.length > 0) {
+                const formData = new FormData();
+                for (let file of fileFiles) formData.append('files', file);
+
+                try {
+                    const res = await fetch('http://localhost:5000/chat/upload', {
+                        method: 'POST',
+                        body: formData
+                    });
+                    uploadedFiles = await res.json();
+                } catch (e) {
+                    console.error("Upload failed", e);
+                }
+            }
+
+            // ২. সকেটে মেসেজ পাঠানো (conversationId সহ)
+            const payload = {
+                conversationId, // ও অপ্টিমাল সলিউশনের জন্য আইডি পাঠানো হচ্ছে
+                receiverId,
+                content,
+                files: uploadedFiles 
+            };
+
+            socket.emit('sendMessage', payload);
+            document.getElementById('msgInput').value = '';
+            document.getElementById('fileInput').value = '';
+        }
+
+        function displayMessage(msg, side) {
+            const container = document.getElementById('messages');
+            const div = document.createElement('div');
+            div.className = `flex ${side === 'right' ? 'justify-end' : 'justify-start'}`;
+            
+            let attachmentsHtml = '';
+            if(msg.attachments && msg.attachments.length > 0) {
+                msg.attachments.forEach(file => {
+                    // প্রিজমা থেকে আসা fileType সাধারণত UPPERCASE হয়
+                    if(file.fileType === 'IMAGE' || file.fileType === 'img') {
+                        attachmentsHtml += `<img src="${file.fileUrl}" class="w-40 rounded mb-2 border">`;
+                    } else {
+                        attachmentsHtml += `<a href="${file.fileUrl}" target="_blank" class="text-xs underline block bg-white p-1 rounded mb-1 text-blue-600">File Attachment</a>`;
+                    }
+                });
+            }
+
+            div.innerHTML = `
+                <div class="${side === 'right' ? 'bg-blue-500 text-white' : 'bg-gray-200'} p-3 rounded-lg max-w-xs shadow-sm">
+                    ${attachmentsHtml}
+                    <p class="break-words">${msg.content || ''}</p>
+                    <span class="text-[10px] opacity-50 block mt-1">${new Date(msg.createdAt).toLocaleTimeString()}</span>
+                </div>
+            `;
+            container.appendChild(div);
+            container.scrollTop = container.scrollHeight;
+        }
+    </script>
+</body>
+</html>

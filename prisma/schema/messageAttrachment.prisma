@@ -1,0 +1,7 @@
+model MessageAttachment {
+    id        String  @id @default(uuid())
+    fileUrl   String
+    fileType  String // 'IMAGE', 'VIDEO', 'FILE'
+    messageId String
+    message   Message @relation(fields: [messageId], references: [id], onDelete: Cascade)
+}

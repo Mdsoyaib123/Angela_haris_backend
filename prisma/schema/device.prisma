@@ -1,0 +1,24 @@
+model LoginSession {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  // Device Info
+  device    String   // e.g., "iPhone 15 Pro - Safari"
+  os        String?  // e.g., "iOS 17"
+  browser   String?  // e.g., "Safari"
+  
+  // Location & Network
+  ipAddress String
+  city      String?
+  region    String?
+  country   String?
+  
+  // Status & Time
+  isActive  Boolean  @default(true) // False if logged out or expired
+  lastActive DateTime @default(now())
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([isActive])
+}

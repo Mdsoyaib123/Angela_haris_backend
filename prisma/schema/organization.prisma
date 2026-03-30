@@ -1,0 +1,39 @@
+model Organization {
+    id               String    @id @default(uuid())
+    organizationName String
+    organizationCode String    @unique
+    email            String    @unique
+    imaageUrl        String?
+    accessUrl        String?
+    contactPhone     String?
+    website          String?
+    country          String?
+    addressLine1     String?
+    addressLine2     String?
+    city             String?
+    state            String?
+    postalCode       String?
+    stripeAccountId  String?
+    stripeAccountType String?  @default("express")
+    stripeOnboardingCompleted Boolean @default(false)
+    stripeChargesEnabled Boolean @default(false)
+    stripePayoutsEnabled Boolean @default(false)
+    bankAccountHolderName String?
+    bankName         String?
+    bankAccountLast4 String?
+    bankRoutingLast4 String?
+    bankCountry      String?
+    bankCurrency     String?
+    onBoardingLink    String?
+    commissionRatePercent Float @default(20)
+    totalCommissionEarned Float @default(0)
+    commissionBalance Float @default(0)
+    totalCommissionPaid Float @default(0)
+    subscriptionPaymentCount Int @default(0)
+    lastCommissionAt DateTime?
+    totalClicks      Int?       @default(0)
+    uniqueVisitors   Int?       @default(0)
+    lastAccessed     DateTime?
+    createdAt        DateTime  @default(now())
+    updatedAt        DateTime  @updatedAt
+}

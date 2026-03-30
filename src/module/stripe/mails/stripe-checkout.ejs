@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Highlightz | Complete Your Subscription</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style type="text/css">
+      /* Base Styles */
+      body {
+        margin: 0;
+        padding: 0;
+        min-width: 100%;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #F0F9F0; /* হালকা গ্রিন ব্যাকগ্রাউন্ড */
+        color: #1A1A1A;
+      }
+      .email-wrapper {
+        max-width: 600px;
+        margin: 40px auto;
+        background-color: #ffffff;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 10px 25px rgba(0, 255, 0, 0.05);
+        border: 2px solid #32CD32; /* নিয়ন গ্রিন বর্ডার */
+      }
+      /* Header */
+      .email-header {
+        background-color: #121212;
+        padding: 35px 20px;
+        text-align: center;
+      }
+      .email-header h1 {
+        margin: 0;
+        font-size: 30px;
+        font-weight: 800;
+        color: #FFFFFF;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        font-style: italic;
+      }
+      .brand-accent {
+        color: #32CD32;
+      }
+      /* Content Body */
+      .email-body {
+        padding: 40px 35px;
+        line-height: 1.7;
+        text-align: center;
+      }
+      .user-greeting {
+        font-size: 20px;
+        font-weight: 700;
+        color: #121212;
+        margin-bottom: 15px;
+        text-align: left;
+      }
+      p {
+        text-align: left;
+        color: #444444;
+      }
+      /* Stripe Button */
+      .cta-container {
+        margin: 35px 0;
+      }
+      .checkout-button {
+        display: inline-block;
+        background-color: #32CD32; /* লোগোর নিয়ন গ্রিন */
+        color: #121212 !important;
+        padding: 16px 32px;
+        font-size: 18px;
+        font-weight: 800;
+        text-decoration: none;
+        border-radius: 10px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 4px 15px rgba(50, 205, 50, 0.3);
+      }
+      /* Footer */
+      .email-footer {
+        background-color: #F9F9F9;
+        padding: 25px;
+        text-align: center;
+        font-size: 13px;
+        color: #666666;
+        border-top: 1px solid #EEEEEE;
+      }
+      .email-footer a {
+        color: #32CD32;
+        text-decoration: none;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="email-wrapper">
+      <div class="email-header">
+        <h1>HIGH<span class="brand-accent">LIGHTZ</span></h1>
+      </div>
+      
+      <div class="email-body">
+        <div class="user-greeting">Hi <%= user.name %>,</div>
+        <p>You're just one step away from unlocking the full potential of <strong>Highlightz</strong>! Please complete your subscription payment by clicking the button below:</p>
+        
+        <div class="cta-container">
+          <a href="<%= checkoutUrl %>" class="checkout-button">Complete Checkout</a>
+        </div>
+
+        <p style="font-size: 14px; color: #777777;">
+          This secure checkout link is powered by <strong>Stripe</strong>. If the button doesn't work, copy and paste this URL into your browser:
+          <br>
+          <span style="word-break: break-all; color: #32CD32; font-size: 12px;"><%= checkoutUrl %></span>
+        </p>
+      </div>
+
+      <div class="email-footer">
+        <p>Secure payments by Stripe. Need help? <a href="mailto:mirajhossen211013@gmail.com">Contact Support</a></p>
+        <p>&copy; 2026 Highlightz Platform. All rights reserved.</p>
+      </div>
+    </div>
+  </body>
+</html>

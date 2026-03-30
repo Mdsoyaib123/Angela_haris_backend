@@ -1,0 +1,51 @@
+model Plan {
+  id              String   @id @default(cuid())
+  name            String // e.g., "Monthly", "Yearly"
+  description     String? // optional short description
+  price           Float // e.g., 9.99
+  currency        String   @default("usd")
+  interval        String?   
+  features        Json // array of feature strings
+  isPopular       Boolean  @default(false) // for "Most Popular" badge
+  stripeProductId String? // from Stripe
+  stripePriceId   String? // from Stripe
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  // Optional: link to subscriptions if needed later
+  subscriptions Subscription[]
+  transactions  Transaction[]
+}
+
+model Subscription {
+  id                   String    @id @default(cuid())
+  userId               String
+  transactionId        String? // Initial Stripe PaymentIntent ID (legacy/mapping)
+  user                 User      @relation(fields: [userId], references: [id])
+  planId               String
+  plan                 Plan      @relation(fields: [planId], references: [id])
+  status               String    @default("active") // "active", "canceled", "past_due"
+  stripeSubscriptionId String?   @unique
+  startedAt            DateTime  @default(now())
+  endedAt              DateTime?
+  transactions         Transaction[]
+}
+
+model Transaction {
+  id               String   @id @default(cuid())
+  userId           String
+  user             User     @relation(fields: [userId], references: [id])
+  subscriptionId   String?
+  subscription     Subscription? @relation(fields: [subscriptionId], references: [id])
+  planId           String?   // New: Track which plan was paid for
+  plan             Plan?      @relation(fields: [planId], references: [id])
+  transactionId    String   @unique // Stripe PaymentIntent ID (pi_...)
+  amount           Float      // in cents
+  currency         String   @default("usd")
+  status           String   // e.g., "succeeded", "failed"
+  receiptUrl       String?
+  billingDate      DateTime @default(now())
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+

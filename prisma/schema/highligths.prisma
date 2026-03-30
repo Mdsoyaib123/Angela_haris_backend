@@ -1,0 +1,43 @@
+model HighlightsView {
+  id           String @id @default(uuid())
+  userId       String
+  highlightsId String
+
+  highlight highlights @relation(fields: [highlightsId], references: [id], onDelete: Cascade)
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  @@unique([userId, highlightsId])
+}
+
+model LikeHighlights {
+  id          String   @id @default(uuid())
+  userId      String
+  highlightId String
+  createdAt   DateTime @default(now())
+
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  highlight highlights @relation(fields: [highlightId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, highlightId]) // Prevent duplicate likes
+}
+
+model highlights {
+  id              String           @id @default(uuid())
+  mergedVideoUrl  String?
+  caption         String
+  description     String
+  userId          String
+  clips           Json
+  isProcessing    Boolean          @default(false)
+  updatedAt       DateTime         @updatedAt
+  likes           Int              @default(0)
+  views           Int              @default(0)
+  createdAt       DateTime         @default(now())
+  highLightsLink  String?
+  user            User             @relation(fields: [userId], references: [id])
+  likedBy         LikeHighlights[] // 👈 Add this
+  highlightsViews HighlightsView[]
+  notifications   Notification[]
+}

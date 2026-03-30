@@ -1,0 +1,93 @@
+enum userRole {
+    ADMIN
+    ATHLATE
+    USER
+    PARENT
+}
+
+enum subscribeStatus {
+    ELITE
+    PRO
+    FREE
+    COMPED
+}
+
+model User {
+    id               String           @id @default(uuid())
+    createdAt        DateTime         @default(now())
+    updatedAt        DateTime         @updatedAt
+    highligts        highlights[]
+    subscriptions    Subscription[]
+    transactions     Transaction[]
+    likesHilghlights LikeHighlights[]
+    loginSessions    LoginSession[]
+    stripeCustomerId String?
+    subscribeStatus  subscribeStatus  @default(FREE)
+    // Required core identity fields
+    bio              String?
+    athleteFullName  String
+    dateOfBirth      DateTime? // stored as DATE in DB (PostgreSQL supports it)
+    email            String           @unique
+    password         String // hashed (e.g., via bcrypt)
+    imgUrl           String?
+    // Optional personal/academic info
+    parentName       String?
+    parentPhone      String?
+    city             String?
+    state            String?
+    gradYear         Int? // e.g., 2026
+    sports           String?
+    position         String? // could be enum if fixed options
+    height           Float? // in cm or inches — clarify unit; using Float for flexibility
+    weight           Float? // same note as height
+    school           String?
+    gpa              Float?           @map("gpa") // optional, mapped to column 'gpa'
+    dominateHand     String?
+    jerseyNumber     Float?
+
+    // Consent & metadata
+    agreedToTerms Boolean  @default(false)
+    fcmToken      String?
+    isActive      Boolean  @default(true)
+    isDeleted     Boolean  @default(false)
+    role          userRole @default(ATHLATE)
+
+    ppg Float? // Points Per Game
+    rpg Float? // Rebounds Per Game
+    apg Float? // Assists Per Game
+    spg Float? // Steals Per Game
+    blk Float? // Blocks Per Game
+
+    adminTilte String?
+
+    profileViews Int       @default(0)
+    lastViewed   DateTime?
+    // Indexes for performance (optional but recommended)
+
+    // miraz vai 
+    posts                 Post[]
+    comments              Comment[]
+    likesPost             Like[]
+    viewedPosts           PostView[]
+    viewedHighlights      HighlightsView[]
+    receivedNotifications Notification[]   @relation("Recipient")
+    sentNotifications     Notification[]   @relation("Sender")
+
+    conversations    Conversation[]
+    sentMessages     Message[]      @relation("SentMessages")
+    receivedMessages Message[]      @relation("ReceivedMessages")
+
+    athlateEmail String?
+    referralCode String?
+    referredBy   String?
+    profileLink  String?
+
+    oranaizaitonCode String?
+
+    phoneNumber           String?
+    clubTeam              String?
+    isTwoStepVerification Boolean? @default(false)
+
+    @@index([email])
+    @@index([athleteFullName])
+}

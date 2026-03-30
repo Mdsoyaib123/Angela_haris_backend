@@ -1,0 +1,18 @@
+model Message {
+  id             String   @id @default(uuid())
+  content        String?
+  senderId       String
+  receiverId     String
+  conversationId String
+  createdAt      DateTime @default(now())
+
+  attachments MessageAttachment[]
+
+  conversation Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  sender       User         @relation("SentMessages", fields: [senderId], references: [id])
+  receiver     User         @relation("ReceivedMessages", fields: [receiverId], references: [id])
+
+  @@index([conversationId])
+  @@index([senderId])
+  @@index([receiverId])
+}

@@ -1,0 +1,24 @@
+model Notification {
+    id      String  @id @default(uuid())
+    title   String
+    message String
+    isRead  Boolean @default(false)
+    type    String? // 'LIKE', 'COMMENT', 'NEW_POST'
+
+    // (Post Owner)
+    userId String
+    user   User   @relation("Recipient", fields: [userId], references: [id], onDelete: Cascade)
+
+    // (Liker/Commenter)
+    senderId String?
+    sender   User?   @relation("Sender", fields: [senderId], references: [id], onDelete: Cascade)
+
+    postId String?
+    post   Post?   @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+    highlightId String?
+    highlight   highlights? @relation(fields: [highlightId], references: [id], onDelete: Cascade)
+    createdAt   DateTime    @default(now())
+
+    @@index([userId])
+}
