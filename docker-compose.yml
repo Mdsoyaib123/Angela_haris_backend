@@ -3,7 +3,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: softvence/angela_backend:latest
+    image: mdsoyaib123/angela_backend:latest
     platform: linux/amd64
     container_name: angelaharris-api
     restart: unless-stopped
