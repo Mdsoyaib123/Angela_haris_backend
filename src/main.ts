@@ -57,3 +57,5 @@ async function bootstrap() {
   await app.listen(configService.get<string>('PORT') || 5000);
 }
 bootstrap();
+
+// ADD CI/CD PIPELINE
