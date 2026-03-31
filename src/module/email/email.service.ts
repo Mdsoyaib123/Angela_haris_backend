@@ -59,6 +59,7 @@ export class EmailService {
       subject,
       text,
       html,
+      attachments: input.attachments,
     });
   }
 }

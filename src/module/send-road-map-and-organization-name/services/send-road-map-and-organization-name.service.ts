@@ -12,7 +12,8 @@ export class SendRoadMapAndOrganizationNameService {
   constructor(private readonly emailService: EmailService) { }
   async sendRoadmap(email: string) {
     try {
-      const filePath = path.join(process.cwd(), 'public', 'roadmap.jpg');
+      // const filePath = path.join(process.cwd(), 'public', 'roadmap.jpg');
+      const filePath = path.resolve('public/roadmap.jpg');
 
       console.log('File exists:', fs.existsSync(filePath));
 
@@ -20,16 +21,18 @@ export class SendRoadMapAndOrganizationNameService {
         to: email,
         subject: 'Your Athlete Recruiting Roadmap',
         html: `
-        <h2>Your Roadmap is Ready 🚀</h2>
-        <p>Please find your roadmap attached below.</p>
-          <img 
-      src="https://i.postimg.cc/YqVyTCBP/roadmap.jpg" 
-      alt="Roadmap"
-      style="width:100%; max-width:600px; border-radius:8px;"
-    />
-      `,
+    <h2>Your Roadmap is Ready 🚀</h2>
+    <p>Please find your roadmap below.</p>
+    <img src="cid:roadmapImage" style="width:100%; max-width:600px;" />
+  `,
+        attachments: [
+          {
+            filename: 'roadmap.jpg',
+            path: filePath,
+            cid: 'roadmapImage', // same as src
+          },
+        ],
       });
-
       return {
         success: true,
         message: 'Roadmap sent successfully',
