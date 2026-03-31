@@ -12,8 +12,8 @@ export class SendRoadMapAndOrganizationNameService {
   constructor(private readonly emailService: EmailService) { }
   async sendRoadmap(email: string) {
     try {
-      // const filePath = path.join(process.cwd(), 'public', 'roadmap.jpg');
-      const filePath = path.resolve('public/roadmap.jpg');
+      const filePath = path.join(process.cwd(), 'public', 'roadmap.jpg');
+      // const filePath = path.resolve('public/roadmap.jpg');
 
       console.log('File exists:', fs.existsSync(filePath));
 
