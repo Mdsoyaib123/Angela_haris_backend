@@ -24,10 +24,13 @@ import { RemoveClipDto } from './dto/remove-clip.dto';
 import { Roles } from 'src/common/decorators/roles.decorator';
 import { subscribeStatus, userRole } from '@prisma';
 import { Subscription } from 'src/common/decorators/subscription.decorator';
+import { PrismaService } from '../prisma/prisma.service';
 
 @Controller('highlights')
 export class HighlightsController {
-  constructor(private highlightService: HighlightsService) {}
+  constructor(private highlightService: HighlightsService, private prisma: PrismaService,
+
+  ) { }
 
   @Post('merge-video')
   @UseInterceptors(FilesInterceptor('clips'))
@@ -43,7 +46,13 @@ export class HighlightsController {
   ) {
     const userId = req.user?.id as string;
     console.log('login user id ', userId);
-    const userStatus = (req.user as any)?.subscribeStatus;
+
+    const user = await this.prisma.client.user.findUnique({
+      where: { id: userId },
+      select: { subscribeStatus: true },
+    });
+
+    const userStatus = user?.subscribeStatus;
 
     console.log('user status ', userStatus);
     const clipCount = clips?.length || 0;
