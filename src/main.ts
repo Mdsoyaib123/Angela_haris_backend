@@ -27,6 +27,7 @@ async function bootstrap() {
       'http://localhost:5174',
       'https://highlightz.vercel.app',
       'https://highlightzapp.com',
+      'https://www.highlightzapp.com',
       'https://highlightzapp.co',
       '*',
       'https://highlightz.netlify.app',
