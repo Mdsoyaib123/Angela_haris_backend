@@ -2,6 +2,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   HttpStatus,
   NotFoundException,
@@ -51,7 +52,7 @@ export class AuthController {
   constructor(
     private authService: AuthService,
     private s3Service: S3Service,
-  ) {}
+  ) { }
 
   // refresh token
   @Post('refresh-token')
@@ -441,6 +442,29 @@ export class AuthController {
       data: result,
     });
   }
+
+
+
+
+  @Patch('delete/:id')
+  async deleteUser(
+    @Param('id') id: string,
+    @Res() res: Response,
+  ) {
+    const result = await this.authService.deleteUser(id);
+
+    // Clear cookies after delete
+    res.clearCookie('accessToken');
+    res.clearCookie('refreshToken');
+
+    return sendResponse(res, {
+      statusCode: HttpStatus.OK,
+      success: true,
+      message: 'User deleted successfully',
+      data: result,
+    });
+  }
+
 
   @Public()
   @Post('send-mail')

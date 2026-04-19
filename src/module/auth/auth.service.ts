@@ -41,7 +41,7 @@ export class AuthService {
     private jwtService: JwtService,
     private s3Service: S3Service,
     private emailService: EmailService,
-  ) {}
+  ) { }
 
   async register(dto: RegisterDto, imageUrl?: string | null) {
     const role = dto.role?.toString().toUpperCase();
@@ -469,8 +469,8 @@ export class AuthService {
     if (dto.school !== undefined) data.school = dto.school;
     if (dto.adminTilte !== undefined) data.adminTilte = dto.adminTilte;
     if (dto.sports !== undefined) data.sports = dto.sports;
-    if(dto.jerseyNumber !== undefined) data.jerseyNumber = dto.jerseyNumber
-    if(dto.dominateHand !== undefined) data.dominateHand = dto.dominateHand
+    if (dto.jerseyNumber !== undefined) data.jerseyNumber = dto.jerseyNumber
+    if (dto.dominateHand !== undefined) data.dominateHand = dto.dominateHand
 
     // Handle numeric fields
     if (dto.gradYear !== undefined) data.gradYear = dto.gradYear;
@@ -850,6 +850,34 @@ export class AuthService {
         createdAt: true,
       },
     });
+  }
+
+
+  async deleteUser(id: string) {
+    // Check user exists
+    const user = await this.prisma.client.user.findUnique({
+      where: { id },
+    });
+
+    if (!user) {
+      throw new NotFoundException('User not found!');
+    }
+
+    // Delete image from S3 if exists
+    if (user.imgUrl) {
+      try {
+        await this.s3Service.deleteFile(user.imgUrl);
+      } catch (error) {
+        console.error('S3 Delete Error:', error);
+      }
+    }
+
+    // Delete user
+    await this.prisma.client.user.delete({
+      where: { id },
+    });
+
+    return null;
   }
 
   async sendCustomEmail(dto: {
