@@ -446,7 +446,7 @@ export class AuthController {
 
 
 
-  @Patch('delete/:id')
+  @Patch('admin-remove/:id')
   async deleteUser(
     @Param('id') id: string,
     @Res() res: Response,
