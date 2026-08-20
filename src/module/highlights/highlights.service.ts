@@ -164,11 +164,11 @@ export class HighlightsService {
           durationLimit(async () => {
             const duration = await this.s3Service.getVideoDuration(file);
 
-            if (duration > 15) {
+            if (duration > 20) {
               throw new BadRequestException(
                 `Clip "${file.originalname}" is ${duration.toFixed(
                   1,
-                )}s long. Each clip must be ≤ 15 seconds.`,
+                )}s long. Each clip must be ≤ 20 seconds.`,
               );
             }
           }),

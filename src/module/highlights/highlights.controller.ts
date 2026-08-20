@@ -68,9 +68,9 @@ export class HighlightsController {
       userStatus === subscribeStatus.PRO ||
       userStatus === subscribeStatus.ELITE
     ) {
-      if (clipCount > 6) {
+      if (clipCount > 10) {
         throw new BadRequestException(
-          'Pro and Elite users can upload a maximum of 6 clips per reel.',
+          'Pro and Elite users can upload a maximum of 10 clips per reel.',
         );
       }
     }
