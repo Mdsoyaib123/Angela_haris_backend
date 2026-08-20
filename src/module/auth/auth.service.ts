@@ -176,6 +176,7 @@ export class AuthService {
   async login(dto: LoginDto, req: Request, res: Response) {
     const user = await this.prisma.client.user.findFirst({
       where: {
+        isDeleted: false,
         OR: [{ email: dto.email }, { athlateEmail: dto.email }],
       },
     });
@@ -184,9 +185,6 @@ export class AuthService {
       throw new ForbiddenException('Invalid credentials');
     }
 
-    if (user.isDeleted) {
-      throw new BadRequestException('User is deleted!');
-    }
     // if (!user.isActive) {
     //   return {isActive: false  ,  access_token: null , refresh_token :null}
     // }
@@ -385,9 +383,9 @@ export class AuthService {
     if (!user || !user.password) {
       throw new NotFoundException('User not found');
     }
-    if (user.isDeleted) {
-      throw new BadRequestException('The account is deleted!');
-    }
+    // if (user.isDeleted) {
+    //   throw new BadRequestException('The account is deleted!');
+    // }
     const isMatch = await bcrypt.compare(dto.oldPassword, user.password);
     if (!isMatch) {
       throw new BadRequestException('Old password is incorrect');
@@ -532,9 +530,9 @@ export class AuthService {
     });
 
     if (!user) throw new NotFoundException('User not found');
-    if (user.isDeleted) {
-      throw new BadRequestException('The account is deleted!');
-    }
+    // if (user.isDeleted) {
+    //   throw new BadRequestException('The account is deleted!');
+    // }
 
     const code = generateOtpCode();
     const hashedCode = await hashOtpCode(code);
