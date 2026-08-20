@@ -16,7 +16,7 @@ export class CreateUserDto {
   })
   email: string;
 
-  @IsEnum(['ADMIN', 'USER', 'ATHLATE'])
+  @IsEnum(['ADMIN', 'USER', 'ATHLATE', 'PARENT'])
   @IsNotEmpty()
   @ApiProperty({
     description: ' role',
