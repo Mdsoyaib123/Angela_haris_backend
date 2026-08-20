@@ -387,8 +387,12 @@ export class AdminService {
 
   async createUser(dto: CreateUserDto) {
     // 1. Check if user already exists
-    const existingUser = await this.prisma.client.user.findUnique({
-      where: { email: dto.email },
+    const email = dto.email.trim().toLowerCase();
+    const existingUser = await this.prisma.client.user.findFirst({
+      where: {
+        email,
+        isDeleted: false,
+      },
     });
 
     if (existingUser) {
@@ -409,7 +413,7 @@ export class AdminService {
     // 4. Create the user in database
     const newUser = await this.prisma.client.user.create({
       data: {
-        email: dto.email,
+        email,
         password: hashedPassword,
         athleteFullName: dto.athleteFullName,
         role: role as userRole,

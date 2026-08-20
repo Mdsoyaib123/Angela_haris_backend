@@ -27,7 +27,7 @@ model User {
     bio              String?
     athleteFullName  String
     dateOfBirth      DateTime? // stored as DATE in DB (PostgreSQL supports it)
-    email            String           @unique
+    email            String
     password         String // hashed (e.g., via bcrypt)
     imgUrl           String?
     // Optional personal/academic info

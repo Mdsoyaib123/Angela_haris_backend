@@ -408,7 +408,7 @@ export class AuthService {
         secret: process.env.REFRESH_TOKEN_SECRET,
       });
 
-      const user = await this.prisma.client.user.findUnique({
+      const user = await this.prisma.client.user.findFirst({
         where: { email: payload.email },
       });
       if (!user) throw new UnauthorizedException('Invalid refresh token');
@@ -434,7 +434,7 @@ export class AuthService {
     imageUrl?: string | null,
   ) {
     // Optional: Validate that user exists
-    const existingUser = await this.prisma.client.user.findUnique({
+    const existingUser = await this.prisma.client.user.findFirst({
       where: { id: userId },
     });
 
@@ -450,7 +450,7 @@ export class AuthService {
 
     // Handle email update — only if it's actually changing
     if (dto.email !== undefined && dto.email !== existingUser.email) {
-      const emailTaken = await this.prisma.client.user.findUnique({
+      const emailTaken = await this.prisma.client.user.findFirst({
         where: { email: dto.email },
       });
       if (emailTaken) {
@@ -524,7 +524,7 @@ export class AuthService {
   // forget and reset password
 
   async requestResetCode(dto: RequestResetCodeDto) {
-    const user = await this.prisma.client.user.findUnique({
+    const user = await this.prisma.client.user.findFirst({
       where: { email: dto.email },
     });
 
@@ -575,7 +575,7 @@ export class AuthService {
   }
 
   async resetPassword(dto: ResetPasswordDto) {
-    const user = await this.prisma.client.user.findUnique({
+    const user = await this.prisma.client.user.findFirst({
       where: { email: dto.email },
     });
 
@@ -603,7 +603,7 @@ export class AuthService {
     );
 
     await this.prisma.client.user.update({
-      where: { email: dto.email },
+      where: { id: user.id },
       data: { password: hashedPassword },
     });
 
@@ -617,7 +617,7 @@ export class AuthService {
   async verifyEmailOtp(dto: VerifyResetCodeDto) {
     await verifyOtp(this.prisma.client, dto.email, dto.code);
 
-    const user = await this.prisma.client.user.findUnique({
+    const user = await this.prisma.client.user.findFirst({
       where: { email: dto.email },
     });
 
@@ -627,7 +627,7 @@ export class AuthService {
 
     if (!user.isActive) {
       await this.prisma.client.user.update({
-        where: { email: dto.email },
+        where: { id: user.id },
         data: { isActive: true },
       });
     }
@@ -636,7 +636,7 @@ export class AuthService {
   }
 
   async resendOtpCode(dto: RequestResetCodeDto) {
-    const user = await this.prisma.client.user.findUnique({
+    const user = await this.prisma.client.user.findFirst({
       where: { email: dto.email },
     });
 
@@ -735,7 +735,7 @@ export class AuthService {
 
   async getPublicUserById(userId: string) {
     console.log('userid', userId);
-    const user = await this.prisma.client.user.findUnique({
+    const user = await this.prisma.client.user.findFirst({
       where: { id: userId },
       omit: { password: true },
       include: {
@@ -791,7 +791,7 @@ export class AuthService {
   }
 
   async getUserStats(userId: string) {
-    const user = await this.prisma.client.user.findUnique({
+    const user = await this.prisma.client.user.findFirst({
       where: { id: userId },
       select: {
         profileViews: true,
