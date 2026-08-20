@@ -2,5 +2,5 @@
 DROP INDEX IF EXISTS "User_email_key";
 
 CREATE UNIQUE INDEX "User_email_active_key"
-ON "User"("email")
+ON "User"(LOWER("email"))
 WHERE "isDeleted" = false;
