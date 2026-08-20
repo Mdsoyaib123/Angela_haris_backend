@@ -51,6 +51,7 @@ export class AuthService {
       // Parent Signup: parentEmail is primary, athlete email optional
       const existingParent = await this.prisma.client.user.findFirst({
         where: {
+          isDeleted: false,
           OR: [{ email: dto.parentEmail }, { athlateEmail: dto.parentEmail }],
         },
       });
@@ -68,6 +69,7 @@ export class AuthService {
       // Check Athlete Email
       const athleteExists = await this.prisma.client.user.findFirst({
         where: {
+          isDeleted: false,
           OR: [
             { email: dto.athlateeEmail },
             { athlateEmail: dto.athlateeEmail },
@@ -81,6 +83,7 @@ export class AuthService {
       // Check Parent Email
       const parentExists = await this.prisma.client.user.findFirst({
         where: {
+          isDeleted: false,
           OR: [{ email: dto.parentEmail }, { athlateEmail: dto.parentEmail }],
         },
       });
