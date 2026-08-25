@@ -46,6 +46,7 @@ import {
   UpdateTwoStepVerificationStatusDto,
   VerifyTwoStepVerificationDto,
 } from './dto/UpdateTwoStepVerificationStatusDto';
+import { UpdateShowPlanDto } from './dto/update-show-plan.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -310,6 +311,31 @@ export class AuthController {
       statusCode: HttpStatus.OK,
       success: true,
       message: 'Profile updated successfully',
+      data: updatedUser,
+    });
+  }
+
+  @Patch('show-plan')
+  @ApiOperation({ summary: 'Update whether the current user can see the plan' })
+  @ApiBody({ type: UpdateShowPlanDto })
+  @ApiResponse({
+    status: HttpStatus.OK,
+    description: 'Plan visibility updated successfully',
+  })
+  async updateShowPlan(
+    @Req() req: Request,
+    @Body() dto: UpdateShowPlanDto,
+    @Res() res: Response,
+  ) {
+    const updatedUser = await this.authService.updateShowPlan(
+      req.user!.id,
+      dto.showPlan,
+    );
+
+    return sendResponse(res, {
+      statusCode: HttpStatus.OK,
+      success: true,
+      message: 'Plan visibility updated successfully',
       data: updatedUser,
     });
   }

@@ -87,6 +87,7 @@ model User {
     phoneNumber           String?
     clubTeam              String?
     isTwoStepVerification Boolean? @default(false)
+    showPlan              Boolean  @default(true)
 
     @@index([email])
     @@index([athleteFullName])

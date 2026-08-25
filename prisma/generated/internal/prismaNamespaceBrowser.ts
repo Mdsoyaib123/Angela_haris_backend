@@ -397,7 +397,8 @@ export const UserScalarFieldEnum = {
   oranaizaitonCode: 'oranaizaitonCode',
   phoneNumber: 'phoneNumber',
   clubTeam: 'clubTeam',
-  isTwoStepVerification: 'isTwoStepVerification'
+  isTwoStepVerification: 'isTwoStepVerification',
+  showPlan: 'showPlan'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]

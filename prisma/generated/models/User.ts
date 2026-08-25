@@ -100,6 +100,7 @@ export type UserMinAggregateOutputType = {
   phoneNumber: string | null
   clubTeam: string | null
   isTwoStepVerification: boolean | null
+  showPlan: boolean | null
 }
 
 export type UserMaxAggregateOutputType = {
@@ -148,6 +149,7 @@ export type UserMaxAggregateOutputType = {
   phoneNumber: string | null
   clubTeam: string | null
   isTwoStepVerification: boolean | null
+  showPlan: boolean | null
 }
 
 export type UserCountAggregateOutputType = {
@@ -196,6 +198,7 @@ export type UserCountAggregateOutputType = {
   phoneNumber: number
   clubTeam: number
   isTwoStepVerification: number
+  showPlan: number
   _all: number
 }
 
@@ -274,6 +277,7 @@ export type UserMinAggregateInputType = {
   phoneNumber?: true
   clubTeam?: true
   isTwoStepVerification?: true
+  showPlan?: true
 }
 
 export type UserMaxAggregateInputType = {
@@ -322,6 +326,7 @@ export type UserMaxAggregateInputType = {
   phoneNumber?: true
   clubTeam?: true
   isTwoStepVerification?: true
+  showPlan?: true
 }
 
 export type UserCountAggregateInputType = {
@@ -370,6 +375,7 @@ export type UserCountAggregateInputType = {
   phoneNumber?: true
   clubTeam?: true
   isTwoStepVerification?: true
+  showPlan?: true
   _all?: true
 }
 
@@ -505,6 +511,7 @@ export type UserGroupByOutputType = {
   phoneNumber: string | null
   clubTeam: string | null
   isTwoStepVerification: boolean | null
+  showPlan: boolean
   _count: UserCountAggregateOutputType | null
   _avg: UserAvgAggregateOutputType | null
   _sum: UserSumAggregateOutputType | null
@@ -576,6 +583,7 @@ export type UserWhereInput = {
   phoneNumber?: Prisma.StringNullableFilter<"User"> | string | null
   clubTeam?: Prisma.StringNullableFilter<"User"> | string | null
   isTwoStepVerification?: Prisma.BoolNullableFilter<"User"> | boolean | null
+  showPlan?: Prisma.BoolFilter<"User"> | boolean
   highligts?: Prisma.HighlightsListRelationFilter
   subscriptions?: Prisma.SubscriptionListRelationFilter
   transactions?: Prisma.TransactionListRelationFilter
@@ -639,6 +647,7 @@ export type UserOrderByWithRelationInput = {
   phoneNumber?: Prisma.SortOrderInput | Prisma.SortOrder
   clubTeam?: Prisma.SortOrderInput | Prisma.SortOrder
   isTwoStepVerification?: Prisma.SortOrderInput | Prisma.SortOrder
+  showPlan?: Prisma.SortOrder
   highligts?: Prisma.highlightsOrderByRelationAggregateInput
   subscriptions?: Prisma.SubscriptionOrderByRelationAggregateInput
   transactions?: Prisma.TransactionOrderByRelationAggregateInput
@@ -705,6 +714,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   phoneNumber?: Prisma.StringNullableFilter<"User"> | string | null
   clubTeam?: Prisma.StringNullableFilter<"User"> | string | null
   isTwoStepVerification?: Prisma.BoolNullableFilter<"User"> | boolean | null
+  showPlan?: Prisma.BoolFilter<"User"> | boolean
   highligts?: Prisma.HighlightsListRelationFilter
   subscriptions?: Prisma.SubscriptionListRelationFilter
   transactions?: Prisma.TransactionListRelationFilter
@@ -768,6 +778,7 @@ export type UserOrderByWithAggregationInput = {
   phoneNumber?: Prisma.SortOrderInput | Prisma.SortOrder
   clubTeam?: Prisma.SortOrderInput | Prisma.SortOrder
   isTwoStepVerification?: Prisma.SortOrderInput | Prisma.SortOrder
+  showPlan?: Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
   _avg?: Prisma.UserAvgOrderByAggregateInput
   _max?: Prisma.UserMaxOrderByAggregateInput
@@ -824,6 +835,7 @@ export type UserScalarWhereWithAggregatesInput = {
   phoneNumber?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   clubTeam?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   isTwoStepVerification?: Prisma.BoolNullableWithAggregatesFilter<"User"> | boolean | null
+  showPlan?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
 }
 
 export type UserCreateInput = {
@@ -872,6 +884,7 @@ export type UserCreateInput = {
   phoneNumber?: string | null
   clubTeam?: string | null
   isTwoStepVerification?: boolean | null
+  showPlan?: boolean
   highligts?: Prisma.highlightsCreateNestedManyWithoutUserInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
   transactions?: Prisma.TransactionCreateNestedManyWithoutUserInput
@@ -935,6 +948,7 @@ export type UserUncheckedCreateInput = {
   phoneNumber?: string | null
   clubTeam?: string | null
   isTwoStepVerification?: boolean | null
+  showPlan?: boolean
   highligts?: Prisma.highlightsUncheckedCreateNestedManyWithoutUserInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
   transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutUserInput
@@ -998,6 +1012,7 @@ export type UserUpdateInput = {
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clubTeam?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isTwoStepVerification?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  showPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   highligts?: Prisma.highlightsUpdateManyWithoutUserNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
   transactions?: Prisma.TransactionUpdateManyWithoutUserNestedInput
@@ -1061,6 +1076,7 @@ export type UserUncheckedUpdateInput = {
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clubTeam?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isTwoStepVerification?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  showPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   highligts?: Prisma.highlightsUncheckedUpdateManyWithoutUserNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
   transactions?: Prisma.TransactionUncheckedUpdateManyWithoutUserNestedInput
@@ -1124,6 +1140,7 @@ export type UserCreateManyInput = {
   phoneNumber?: string | null
   clubTeam?: string | null
   isTwoStepVerification?: boolean | null
+  showPlan?: boolean
 }
 
 export type UserUpdateManyMutationInput = {
@@ -1172,6 +1189,7 @@ export type UserUpdateManyMutationInput = {
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clubTeam?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isTwoStepVerification?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  showPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type UserUncheckedUpdateManyInput = {
@@ -1220,6 +1238,7 @@ export type UserUncheckedUpdateManyInput = {
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clubTeam?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isTwoStepVerification?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  showPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type UserScalarRelationFilter = {
@@ -1288,6 +1307,7 @@ export type UserCountOrderByAggregateInput = {
   phoneNumber?: Prisma.SortOrder
   clubTeam?: Prisma.SortOrder
   isTwoStepVerification?: Prisma.SortOrder
+  showPlan?: Prisma.SortOrder
 }
 
 export type UserAvgOrderByAggregateInput = {
@@ -1350,6 +1370,7 @@ export type UserMaxOrderByAggregateInput = {
   phoneNumber?: Prisma.SortOrder
   clubTeam?: Prisma.SortOrder
   isTwoStepVerification?: Prisma.SortOrder
+  showPlan?: Prisma.SortOrder
 }
 
 export type UserMinOrderByAggregateInput = {
@@ -1398,6 +1419,7 @@ export type UserMinOrderByAggregateInput = {
   phoneNumber?: Prisma.SortOrder
   clubTeam?: Prisma.SortOrder
   isTwoStepVerification?: Prisma.SortOrder
+  showPlan?: Prisma.SortOrder
 }
 
 export type UserSumOrderByAggregateInput = {
@@ -1716,6 +1738,7 @@ export type UserCreateWithoutCommentsInput = {
   phoneNumber?: string | null
   clubTeam?: string | null
   isTwoStepVerification?: boolean | null
+  showPlan?: boolean
   highligts?: Prisma.highlightsCreateNestedManyWithoutUserInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
   transactions?: Prisma.TransactionCreateNestedManyWithoutUserInput
@@ -1778,6 +1801,7 @@ export type UserUncheckedCreateWithoutCommentsInput = {
   phoneNumber?: string | null
   clubTeam?: string | null
   isTwoStepVerification?: boolean | null
+  showPlan?: boolean
   highligts?: Prisma.highlightsUncheckedCreateNestedManyWithoutUserInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
   transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutUserInput
@@ -1856,6 +1880,7 @@ export type UserUpdateWithoutCommentsInput = {
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clubTeam?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isTwoStepVerification?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  showPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   highligts?: Prisma.highlightsUpdateManyWithoutUserNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
   transactions?: Prisma.TransactionUpdateManyWithoutUserNestedInput
@@ -1918,6 +1943,7 @@ export type UserUncheckedUpdateWithoutCommentsInput = {
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clubTeam?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isTwoStepVerification?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  showPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   highligts?: Prisma.highlightsUncheckedUpdateManyWithoutUserNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
   transactions?: Prisma.TransactionUncheckedUpdateManyWithoutUserNestedInput
@@ -1980,6 +2006,7 @@ export type UserCreateWithoutConversationsInput = {
   phoneNumber?: string | null
   clubTeam?: string | null
   isTwoStepVerification?: boolean | null
+  showPlan?: boolean
   highligts?: Prisma.highlightsCreateNestedManyWithoutUserInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
   transactions?: Prisma.TransactionCreateNestedManyWithoutUserInput
@@ -2042,6 +2069,7 @@ export type UserUncheckedCreateWithoutConversationsInput = {
   phoneNumber?: string | null
   clubTeam?: string | null
   isTwoStepVerification?: boolean | null
+  showPlan?: boolean
   highligts?: Prisma.highlightsUncheckedCreateNestedManyWithoutUserInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
   transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutUserInput
@@ -2128,6 +2156,7 @@ export type UserScalarWhereInput = {
   phoneNumber?: Prisma.StringNullableFilter<"User"> | string | null
   clubTeam?: Prisma.StringNullableFilter<"User"> | string | null
   isTwoStepVerification?: Prisma.BoolNullableFilter<"User"> | boolean | null
+  showPlan?: Prisma.BoolFilter<"User"> | boolean
 }
 
 export type UserCreateWithoutLoginSessionsInput = {
@@ -2176,6 +2205,7 @@ export type UserCreateWithoutLoginSessionsInput = {
   phoneNumber?: string | null
   clubTeam?: string | null
   isTwoStepVerification?: boolean | null
+  showPlan?: boolean
   highligts?: Prisma.highlightsCreateNestedManyWithoutUserInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
   transactions?: Prisma.TransactionCreateNestedManyWithoutUserInput
@@ -2238,6 +2268,7 @@ export type UserUncheckedCreateWithoutLoginSessionsInput = {
   phoneNumber?: string | null
   clubTeam?: string | null
   isTwoStepVerification?: boolean | null
+  showPlan?: boolean
   highligts?: Prisma.highlightsUncheckedCreateNestedManyWithoutUserInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
   transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutUserInput
@@ -2316,6 +2347,7 @@ export type UserUpdateWithoutLoginSessionsInput = {
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clubTeam?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isTwoStepVerification?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  showPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   highligts?: Prisma.highlightsUpdateManyWithoutUserNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
   transactions?: Prisma.TransactionUpdateManyWithoutUserNestedInput
@@ -2378,6 +2410,7 @@ export type UserUncheckedUpdateWithoutLoginSessionsInput = {
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clubTeam?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isTwoStepVerification?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  showPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   highligts?: Prisma.highlightsUncheckedUpdateManyWithoutUserNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
   transactions?: Prisma.TransactionUncheckedUpdateManyWithoutUserNestedInput
@@ -2440,6 +2473,7 @@ export type UserCreateWithoutViewedHighlightsInput = {
   phoneNumber?: string | null
   clubTeam?: string | null
   isTwoStepVerification?: boolean | null
+  showPlan?: boolean
   highligts?: Prisma.highlightsCreateNestedManyWithoutUserInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
   transactions?: Prisma.TransactionCreateNestedManyWithoutUserInput
@@ -2502,6 +2536,7 @@ export type UserUncheckedCreateWithoutViewedHighlightsInput = {
   phoneNumber?: string | null
   clubTeam?: string | null
   isTwoStepVerification?: boolean | null
+  showPlan?: boolean
   highligts?: Prisma.highlightsUncheckedCreateNestedManyWithoutUserInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
   transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutUserInput
@@ -2580,6 +2615,7 @@ export type UserUpdateWithoutViewedHighlightsInput = {
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clubTeam?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isTwoStepVerification?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  showPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   highligts?: Prisma.highlightsUpdateManyWithoutUserNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
   transactions?: Prisma.TransactionUpdateManyWithoutUserNestedInput
@@ -2642,6 +2678,7 @@ export type UserUncheckedUpdateWithoutViewedHighlightsInput = {
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clubTeam?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isTwoStepVerification?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  showPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   highligts?: Prisma.highlightsUncheckedUpdateManyWithoutUserNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
   transactions?: Prisma.TransactionUncheckedUpdateManyWithoutUserNestedInput
@@ -2704,6 +2741,7 @@ export type UserCreateWithoutLikesHilghlightsInput = {
   phoneNumber?: string | null
   clubTeam?: string | null
   isTwoStepVerification?: boolean | null
+  showPlan?: boolean
   highligts?: Prisma.highlightsCreateNestedManyWithoutUserInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
   transactions?: Prisma.TransactionCreateNestedManyWithoutUserInput
@@ -2766,6 +2804,7 @@ export type UserUncheckedCreateWithoutLikesHilghlightsInput = {
   phoneNumber?: string | null
   clubTeam?: string | null
   isTwoStepVerification?: boolean | null
+  showPlan?: boolean
   highligts?: Prisma.highlightsUncheckedCreateNestedManyWithoutUserInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
   transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutUserInput
@@ -2844,6 +2883,7 @@ export type UserUpdateWithoutLikesHilghlightsInput = {
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clubTeam?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isTwoStepVerification?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  showPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   highligts?: Prisma.highlightsUpdateManyWithoutUserNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
   transactions?: Prisma.TransactionUpdateManyWithoutUserNestedInput
@@ -2906,6 +2946,7 @@ export type UserUncheckedUpdateWithoutLikesHilghlightsInput = {
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clubTeam?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isTwoStepVerification?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  showPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   highligts?: Prisma.highlightsUncheckedUpdateManyWithoutUserNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
   transactions?: Prisma.TransactionUncheckedUpdateManyWithoutUserNestedInput
@@ -2968,6 +3009,7 @@ export type UserCreateWithoutHighligtsInput = {
   phoneNumber?: string | null
   clubTeam?: string | null
   isTwoStepVerification?: boolean | null
+  showPlan?: boolean
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
   transactions?: Prisma.TransactionCreateNestedManyWithoutUserInput
   likesHilghlights?: Prisma.LikeHighlightsCreateNestedManyWithoutUserInput
@@ -3030,6 +3072,7 @@ export type UserUncheckedCreateWithoutHighligtsInput = {
   phoneNumber?: string | null
   clubTeam?: string | null
   isTwoStepVerification?: boolean | null
+  showPlan?: boolean
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
   transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutUserInput
   likesHilghlights?: Prisma.LikeHighlightsUncheckedCreateNestedManyWithoutUserInput
@@ -3108,6 +3151,7 @@ export type UserUpdateWithoutHighligtsInput = {
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clubTeam?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isTwoStepVerification?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  showPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
   transactions?: Prisma.TransactionUpdateManyWithoutUserNestedInput
   likesHilghlights?: Prisma.LikeHighlightsUpdateManyWithoutUserNestedInput
@@ -3170,6 +3214,7 @@ export type UserUncheckedUpdateWithoutHighligtsInput = {
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clubTeam?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isTwoStepVerification?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  showPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
   transactions?: Prisma.TransactionUncheckedUpdateManyWithoutUserNestedInput
   likesHilghlights?: Prisma.LikeHighlightsUncheckedUpdateManyWithoutUserNestedInput
@@ -3232,6 +3277,7 @@ export type UserCreateWithoutLikesPostInput = {
   phoneNumber?: string | null
   clubTeam?: string | null
   isTwoStepVerification?: boolean | null
+  showPlan?: boolean
   highligts?: Prisma.highlightsCreateNestedManyWithoutUserInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
   transactions?: Prisma.TransactionCreateNestedManyWithoutUserInput
@@ -3294,6 +3340,7 @@ export type UserUncheckedCreateWithoutLikesPostInput = {
   phoneNumber?: string | null
   clubTeam?: string | null
   isTwoStepVerification?: boolean | null
+  showPlan?: boolean
   highligts?: Prisma.highlightsUncheckedCreateNestedManyWithoutUserInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
   transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutUserInput
@@ -3372,6 +3419,7 @@ export type UserUpdateWithoutLikesPostInput = {
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clubTeam?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isTwoStepVerification?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  showPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   highligts?: Prisma.highlightsUpdateManyWithoutUserNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
   transactions?: Prisma.TransactionUpdateManyWithoutUserNestedInput
@@ -3434,6 +3482,7 @@ export type UserUncheckedUpdateWithoutLikesPostInput = {
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clubTeam?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isTwoStepVerification?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  showPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   highligts?: Prisma.highlightsUncheckedUpdateManyWithoutUserNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
   transactions?: Prisma.TransactionUncheckedUpdateManyWithoutUserNestedInput
@@ -3496,6 +3545,7 @@ export type UserCreateWithoutSentMessagesInput = {
   phoneNumber?: string | null
   clubTeam?: string | null
   isTwoStepVerification?: boolean | null
+  showPlan?: boolean
   highligts?: Prisma.highlightsCreateNestedManyWithoutUserInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
   transactions?: Prisma.TransactionCreateNestedManyWithoutUserInput
@@ -3558,6 +3608,7 @@ export type UserUncheckedCreateWithoutSentMessagesInput = {
   phoneNumber?: string | null
   clubTeam?: string | null
   isTwoStepVerification?: boolean | null
+  showPlan?: boolean
   highligts?: Prisma.highlightsUncheckedCreateNestedManyWithoutUserInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
   transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutUserInput
@@ -3625,6 +3676,7 @@ export type UserCreateWithoutReceivedMessagesInput = {
   phoneNumber?: string | null
   clubTeam?: string | null
   isTwoStepVerification?: boolean | null
+  showPlan?: boolean
   highligts?: Prisma.highlightsCreateNestedManyWithoutUserInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
   transactions?: Prisma.TransactionCreateNestedManyWithoutUserInput
@@ -3687,6 +3739,7 @@ export type UserUncheckedCreateWithoutReceivedMessagesInput = {
   phoneNumber?: string | null
   clubTeam?: string | null
   isTwoStepVerification?: boolean | null
+  showPlan?: boolean
   highligts?: Prisma.highlightsUncheckedCreateNestedManyWithoutUserInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
   transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutUserInput
@@ -3765,6 +3818,7 @@ export type UserUpdateWithoutSentMessagesInput = {
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clubTeam?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isTwoStepVerification?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  showPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   highligts?: Prisma.highlightsUpdateManyWithoutUserNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
   transactions?: Prisma.TransactionUpdateManyWithoutUserNestedInput
@@ -3827,6 +3881,7 @@ export type UserUncheckedUpdateWithoutSentMessagesInput = {
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clubTeam?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isTwoStepVerification?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  showPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   highligts?: Prisma.highlightsUncheckedUpdateManyWithoutUserNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
   transactions?: Prisma.TransactionUncheckedUpdateManyWithoutUserNestedInput
@@ -3900,6 +3955,7 @@ export type UserUpdateWithoutReceivedMessagesInput = {
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clubTeam?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isTwoStepVerification?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  showPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   highligts?: Prisma.highlightsUpdateManyWithoutUserNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
   transactions?: Prisma.TransactionUpdateManyWithoutUserNestedInput
@@ -3962,6 +4018,7 @@ export type UserUncheckedUpdateWithoutReceivedMessagesInput = {
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clubTeam?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isTwoStepVerification?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  showPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   highligts?: Prisma.highlightsUncheckedUpdateManyWithoutUserNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
   transactions?: Prisma.TransactionUncheckedUpdateManyWithoutUserNestedInput
@@ -4024,6 +4081,7 @@ export type UserCreateWithoutReceivedNotificationsInput = {
   phoneNumber?: string | null
   clubTeam?: string | null
   isTwoStepVerification?: boolean | null
+  showPlan?: boolean
   highligts?: Prisma.highlightsCreateNestedManyWithoutUserInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
   transactions?: Prisma.TransactionCreateNestedManyWithoutUserInput
@@ -4086,6 +4144,7 @@ export type UserUncheckedCreateWithoutReceivedNotificationsInput = {
   phoneNumber?: string | null
   clubTeam?: string | null
   isTwoStepVerification?: boolean | null
+  showPlan?: boolean
   highligts?: Prisma.highlightsUncheckedCreateNestedManyWithoutUserInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
   transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutUserInput
@@ -4153,6 +4212,7 @@ export type UserCreateWithoutSentNotificationsInput = {
   phoneNumber?: string | null
   clubTeam?: string | null
   isTwoStepVerification?: boolean | null
+  showPlan?: boolean
   highligts?: Prisma.highlightsCreateNestedManyWithoutUserInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
   transactions?: Prisma.TransactionCreateNestedManyWithoutUserInput
@@ -4215,6 +4275,7 @@ export type UserUncheckedCreateWithoutSentNotificationsInput = {
   phoneNumber?: string | null
   clubTeam?: string | null
   isTwoStepVerification?: boolean | null
+  showPlan?: boolean
   highligts?: Prisma.highlightsUncheckedCreateNestedManyWithoutUserInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
   transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutUserInput
@@ -4293,6 +4354,7 @@ export type UserUpdateWithoutReceivedNotificationsInput = {
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clubTeam?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isTwoStepVerification?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  showPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   highligts?: Prisma.highlightsUpdateManyWithoutUserNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
   transactions?: Prisma.TransactionUpdateManyWithoutUserNestedInput
@@ -4355,6 +4417,7 @@ export type UserUncheckedUpdateWithoutReceivedNotificationsInput = {
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clubTeam?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isTwoStepVerification?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  showPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   highligts?: Prisma.highlightsUncheckedUpdateManyWithoutUserNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
   transactions?: Prisma.TransactionUncheckedUpdateManyWithoutUserNestedInput
@@ -4428,6 +4491,7 @@ export type UserUpdateWithoutSentNotificationsInput = {
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clubTeam?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isTwoStepVerification?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  showPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   highligts?: Prisma.highlightsUpdateManyWithoutUserNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
   transactions?: Prisma.TransactionUpdateManyWithoutUserNestedInput
@@ -4490,6 +4554,7 @@ export type UserUncheckedUpdateWithoutSentNotificationsInput = {
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clubTeam?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isTwoStepVerification?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  showPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   highligts?: Prisma.highlightsUncheckedUpdateManyWithoutUserNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
   transactions?: Prisma.TransactionUncheckedUpdateManyWithoutUserNestedInput
@@ -4552,6 +4617,7 @@ export type UserCreateWithoutViewedPostsInput = {
   phoneNumber?: string | null
   clubTeam?: string | null
   isTwoStepVerification?: boolean | null
+  showPlan?: boolean
   highligts?: Prisma.highlightsCreateNestedManyWithoutUserInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
   transactions?: Prisma.TransactionCreateNestedManyWithoutUserInput
@@ -4614,6 +4680,7 @@ export type UserUncheckedCreateWithoutViewedPostsInput = {
   phoneNumber?: string | null
   clubTeam?: string | null
   isTwoStepVerification?: boolean | null
+  showPlan?: boolean
   highligts?: Prisma.highlightsUncheckedCreateNestedManyWithoutUserInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
   transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutUserInput
@@ -4692,6 +4759,7 @@ export type UserUpdateWithoutViewedPostsInput = {
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clubTeam?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isTwoStepVerification?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  showPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   highligts?: Prisma.highlightsUpdateManyWithoutUserNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
   transactions?: Prisma.TransactionUpdateManyWithoutUserNestedInput
@@ -4754,6 +4822,7 @@ export type UserUncheckedUpdateWithoutViewedPostsInput = {
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clubTeam?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isTwoStepVerification?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  showPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   highligts?: Prisma.highlightsUncheckedUpdateManyWithoutUserNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
   transactions?: Prisma.TransactionUncheckedUpdateManyWithoutUserNestedInput
@@ -4816,6 +4885,7 @@ export type UserCreateWithoutPostsInput = {
   phoneNumber?: string | null
   clubTeam?: string | null
   isTwoStepVerification?: boolean | null
+  showPlan?: boolean
   highligts?: Prisma.highlightsCreateNestedManyWithoutUserInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
   transactions?: Prisma.TransactionCreateNestedManyWithoutUserInput
@@ -4878,6 +4948,7 @@ export type UserUncheckedCreateWithoutPostsInput = {
   phoneNumber?: string | null
   clubTeam?: string | null
   isTwoStepVerification?: boolean | null
+  showPlan?: boolean
   highligts?: Prisma.highlightsUncheckedCreateNestedManyWithoutUserInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
   transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutUserInput
@@ -4956,6 +5027,7 @@ export type UserUpdateWithoutPostsInput = {
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clubTeam?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isTwoStepVerification?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  showPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   highligts?: Prisma.highlightsUpdateManyWithoutUserNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
   transactions?: Prisma.TransactionUpdateManyWithoutUserNestedInput
@@ -5018,6 +5090,7 @@ export type UserUncheckedUpdateWithoutPostsInput = {
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clubTeam?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isTwoStepVerification?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  showPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   highligts?: Prisma.highlightsUncheckedUpdateManyWithoutUserNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
   transactions?: Prisma.TransactionUncheckedUpdateManyWithoutUserNestedInput
@@ -5080,6 +5153,7 @@ export type UserCreateWithoutSubscriptionsInput = {
   phoneNumber?: string | null
   clubTeam?: string | null
   isTwoStepVerification?: boolean | null
+  showPlan?: boolean
   highligts?: Prisma.highlightsCreateNestedManyWithoutUserInput
   transactions?: Prisma.TransactionCreateNestedManyWithoutUserInput
   likesHilghlights?: Prisma.LikeHighlightsCreateNestedManyWithoutUserInput
@@ -5142,6 +5216,7 @@ export type UserUncheckedCreateWithoutSubscriptionsInput = {
   phoneNumber?: string | null
   clubTeam?: string | null
   isTwoStepVerification?: boolean | null
+  showPlan?: boolean
   highligts?: Prisma.highlightsUncheckedCreateNestedManyWithoutUserInput
   transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutUserInput
   likesHilghlights?: Prisma.LikeHighlightsUncheckedCreateNestedManyWithoutUserInput
@@ -5220,6 +5295,7 @@ export type UserUpdateWithoutSubscriptionsInput = {
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clubTeam?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isTwoStepVerification?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  showPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   highligts?: Prisma.highlightsUpdateManyWithoutUserNestedInput
   transactions?: Prisma.TransactionUpdateManyWithoutUserNestedInput
   likesHilghlights?: Prisma.LikeHighlightsUpdateManyWithoutUserNestedInput
@@ -5282,6 +5358,7 @@ export type UserUncheckedUpdateWithoutSubscriptionsInput = {
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clubTeam?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isTwoStepVerification?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  showPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   highligts?: Prisma.highlightsUncheckedUpdateManyWithoutUserNestedInput
   transactions?: Prisma.TransactionUncheckedUpdateManyWithoutUserNestedInput
   likesHilghlights?: Prisma.LikeHighlightsUncheckedUpdateManyWithoutUserNestedInput
@@ -5344,6 +5421,7 @@ export type UserCreateWithoutTransactionsInput = {
   phoneNumber?: string | null
   clubTeam?: string | null
   isTwoStepVerification?: boolean | null
+  showPlan?: boolean
   highligts?: Prisma.highlightsCreateNestedManyWithoutUserInput
   subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
   likesHilghlights?: Prisma.LikeHighlightsCreateNestedManyWithoutUserInput
@@ -5406,6 +5484,7 @@ export type UserUncheckedCreateWithoutTransactionsInput = {
   phoneNumber?: string | null
   clubTeam?: string | null
   isTwoStepVerification?: boolean | null
+  showPlan?: boolean
   highligts?: Prisma.highlightsUncheckedCreateNestedManyWithoutUserInput
   subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
   likesHilghlights?: Prisma.LikeHighlightsUncheckedCreateNestedManyWithoutUserInput
@@ -5484,6 +5563,7 @@ export type UserUpdateWithoutTransactionsInput = {
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clubTeam?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isTwoStepVerification?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  showPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   highligts?: Prisma.highlightsUpdateManyWithoutUserNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
   likesHilghlights?: Prisma.LikeHighlightsUpdateManyWithoutUserNestedInput
@@ -5546,6 +5626,7 @@ export type UserUncheckedUpdateWithoutTransactionsInput = {
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clubTeam?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isTwoStepVerification?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  showPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   highligts?: Prisma.highlightsUncheckedUpdateManyWithoutUserNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
   likesHilghlights?: Prisma.LikeHighlightsUncheckedUpdateManyWithoutUserNestedInput
@@ -5608,6 +5689,7 @@ export type UserUpdateWithoutConversationsInput = {
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clubTeam?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isTwoStepVerification?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  showPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   highligts?: Prisma.highlightsUpdateManyWithoutUserNestedInput
   subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
   transactions?: Prisma.TransactionUpdateManyWithoutUserNestedInput
@@ -5670,6 +5752,7 @@ export type UserUncheckedUpdateWithoutConversationsInput = {
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clubTeam?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isTwoStepVerification?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  showPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
   highligts?: Prisma.highlightsUncheckedUpdateManyWithoutUserNestedInput
   subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
   transactions?: Prisma.TransactionUncheckedUpdateManyWithoutUserNestedInput
@@ -5732,6 +5815,7 @@ export type UserUncheckedUpdateManyWithoutConversationsInput = {
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clubTeam?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isTwoStepVerification?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  showPlan?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 
@@ -5937,6 +6021,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   phoneNumber?: boolean
   clubTeam?: boolean
   isTwoStepVerification?: boolean
+  showPlan?: boolean
   highligts?: boolean | Prisma.User$highligtsArgs<ExtArgs>
   subscriptions?: boolean | Prisma.User$subscriptionsArgs<ExtArgs>
   transactions?: boolean | Prisma.User$transactionsArgs<ExtArgs>
@@ -6001,6 +6086,7 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   phoneNumber?: boolean
   clubTeam?: boolean
   isTwoStepVerification?: boolean
+  showPlan?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -6049,6 +6135,7 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   phoneNumber?: boolean
   clubTeam?: boolean
   isTwoStepVerification?: boolean
+  showPlan?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectScalar = {
@@ -6097,9 +6184,10 @@ export type UserSelectScalar = {
   phoneNumber?: boolean
   clubTeam?: boolean
   isTwoStepVerification?: boolean
+  showPlan?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "stripeCustomerId" | "subscribeStatus" | "bio" | "athleteFullName" | "dateOfBirth" | "email" | "password" | "imgUrl" | "parentName" | "parentPhone" | "city" | "state" | "gradYear" | "sports" | "position" | "height" | "weight" | "school" | "gpa" | "dominateHand" | "jerseyNumber" | "agreedToTerms" | "fcmToken" | "isActive" | "isDeleted" | "role" | "ppg" | "rpg" | "apg" | "spg" | "blk" | "adminTilte" | "profileViews" | "lastViewed" | "athlateEmail" | "referralCode" | "referredBy" | "profileLink" | "oranaizaitonCode" | "phoneNumber" | "clubTeam" | "isTwoStepVerification", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "stripeCustomerId" | "subscribeStatus" | "bio" | "athleteFullName" | "dateOfBirth" | "email" | "password" | "imgUrl" | "parentName" | "parentPhone" | "city" | "state" | "gradYear" | "sports" | "position" | "height" | "weight" | "school" | "gpa" | "dominateHand" | "jerseyNumber" | "agreedToTerms" | "fcmToken" | "isActive" | "isDeleted" | "role" | "ppg" | "rpg" | "apg" | "spg" | "blk" | "adminTilte" | "profileViews" | "lastViewed" | "athlateEmail" | "referralCode" | "referredBy" | "profileLink" | "oranaizaitonCode" | "phoneNumber" | "clubTeam" | "isTwoStepVerification" | "showPlan", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   highligts?: boolean | Prisma.User$highligtsArgs<ExtArgs>
   subscriptions?: boolean | Prisma.User$subscriptionsArgs<ExtArgs>
@@ -6186,6 +6274,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     phoneNumber: string | null
     clubTeam: string | null
     isTwoStepVerification: boolean | null
+    showPlan: boolean
   }, ExtArgs["result"]["user"]>
   composites: {}
 }
@@ -6669,6 +6758,7 @@ export interface UserFieldRefs {
   readonly phoneNumber: Prisma.FieldRef<"User", 'String'>
   readonly clubTeam: Prisma.FieldRef<"User", 'String'>
   readonly isTwoStepVerification: Prisma.FieldRef<"User", 'Boolean'>
+  readonly showPlan: Prisma.FieldRef<"User", 'Boolean'>
 }
     
 
