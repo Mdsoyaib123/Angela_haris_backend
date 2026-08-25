@@ -522,21 +522,13 @@ export class AuthService {
     return safeUser;
   }
 
-  async updateShowPlan(userId: string, showPlan: boolean) {
-    const user = await this.prisma.client.user.findUnique({
-      where: { id: userId },
-      select: { id: true },
-    });
-
-    if (!user) {
-      throw new NotFoundException('User not found');
-    }
-
-    return this.prisma.client.user.update({
-      where: { id: userId },
+  async updateShowPlan(showPlan: boolean) {
+    const result = await this.prisma.client.user.updateMany({
+      where: { isDeleted: false },
       data: { showPlan },
-      select: { id: true, showPlan: true },
     });
+
+    return { showPlan, updatedUserCount: result.count };
   }
 
   // forget and reset password

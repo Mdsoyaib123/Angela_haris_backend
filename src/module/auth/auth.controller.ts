@@ -316,7 +316,8 @@ export class AuthController {
   }
 
   @Patch('show-plan')
-  @ApiOperation({ summary: 'Update whether the current user can see the plan' })
+  @Roles(userRole.ADMIN)
+  @ApiOperation({ summary: 'Update plan visibility for all users' })
   @ApiBody({ type: UpdateShowPlanDto })
   @ApiResponse({
     status: HttpStatus.OK,
@@ -327,16 +328,13 @@ export class AuthController {
     @Body() dto: UpdateShowPlanDto,
     @Res() res: Response,
   ) {
-    const updatedUser = await this.authService.updateShowPlan(
-      req.user!.id,
-      dto.showPlan,
-    );
+    const updatedUsers = await this.authService.updateShowPlan(dto.showPlan);
 
     return sendResponse(res, {
       statusCode: HttpStatus.OK,
       success: true,
-      message: 'Plan visibility updated successfully',
-      data: updatedUser,
+      message: 'Plan visibility updated for all users successfully',
+      data: updatedUsers,
     });
   }
 
